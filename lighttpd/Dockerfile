@@ -21,7 +21,10 @@ RUN apk update && apk add --no-cache\
 	php7-ldap \ 
 	php7-ctype \ 
 	php7-dom \
+	php-mbstring \
 	lighttpd \
+	php-mysqli \
+	zabbix-webif \
 	&& sed -i 's/#   include "mod_fastcgi.conf"/    include "mod_fastcgi.conf"/g' /etc/lighttpd/lighttpd.conf && \
 	sed -i 's+/usr/bin/php-cgi+/usr/bin/php-cgi7+g' /etc/lighttpd/mod_fastcgi.conf && \
 	mkdir /scripts && \

@@ -73,6 +73,3 @@ fi
 echo 'start running mysqld'
 
 exec /usr/bin/mysqld --user=mysql --skip-name-resolve --skip-networking=0
-
-
-#/bin/sh

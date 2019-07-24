@@ -23,7 +23,6 @@ services:
         aliases:
           - database
 
-
   zabbix:
     container_name: zabbix
     build:
