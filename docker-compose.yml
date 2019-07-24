@@ -1,0 +1,39 @@
+version: '3.3'
+services:
+  lighttpd:
+    container_name: lighttpd
+    build:
+      context: ./lighttpd
+    expose:
+      - 8080
+    depends_on:
+      - mysql
+    networks:
+      - legacy
+
+  mysql:
+    container_name: mysql
+    build:
+      context: ./mysql
+    restart: always
+    expose:
+      - 3306
+    networks:
+      legacy:
+        aliases:
+          - database
+
+
+  zabbix:
+    container_name: zabbix
+    build:
+      context: ./zabbix
+    depends_on:
+      - lighttpd
+      - mysql
+    command: ["/scripts/wait_for_mysql.sh", "mysql:3306"]
+    networks:
+      - legacy
+
+networks:
+  legacy:
